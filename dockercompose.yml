@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    container_name: db 
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+    volumes:
+      - webdata:/var/lib/mysql
+    restart: always
+    expose:
+      - 3306
+
+  wordpress:
+    image: testimage:latest #wordpress:5.1.1-php7.3-apache
+    container_name: wp
+    depends_on:
+      - db
+    restart: always
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=admin
+      - WORDPRESS_DB_PASSWORD=admin
+      - WORDPRESS_DB_NAME=wordpress
+    volumes:
+      - website:/var/www/html
+    ports:
+      - 8000:80
+    #command: >
+    #  sh -c "
+    #         sh install_plugin_theme.sh"
+
+volumes:
+    webdata: 
+    website:
