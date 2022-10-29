@@ -1,0 +1,17 @@
+on: [push]
+name: publish
+jobs:
+ publish-a-docker-image:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+    - name: Login to Github Container Registry
+    - uses: docker/login-action@v1
+    - with: 
+       Registry: ghcr.io
+       username: ${{ github.actor }}
+       password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build the Docker image
+    - run: docker build . --tag ghcr.io/Riyiru/web-ban-hang-wordpress:latest
+           docker run ghcr.io/Riyiru/web-ban-hang-wordpress:latest
+           docker push ghcr.io/Riyiru/web-ban-hang-wordpress:latest
