@@ -41,6 +41,6 @@ jobs:
     #    labels: ${{ steps.meta.outputs.labels }}
 
     - name: Build the Docker image
-      run: docker build . --tag ghcr.io/Riyiru/DoAnChuyenNganh/web-ban-hang-wordpress:latest
-           docker run ghcr.io/Riyiru/DoAnChuyenNganh/web-ban-hang-wordpress:latest
-           docker push ghcr.io/Riyiru/DoAnChuyenNganh/web-ban-hang-wordpress:latest
+      run: docker build . --tag ghcr.io/riyiru/doanchuyennganh/web-ban-hang-wordpress:latest
+           docker run ghcr.io/riyiru/doanchuyennganh/web-ban-hang-wordpress:latest
+           docker push ghcr.io/riyiru/doanchuyennganh/web-ban-hang-wordpress:latest
